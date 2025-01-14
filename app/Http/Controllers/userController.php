@@ -9,13 +9,13 @@ class userController extends Controller
 
 {
 public function logout(){
-    auth->logout();
+    auth()->logout();
     return redirect('/');
 }
 public function login(Request $request){
     $incomingFields = $request->validate([
-        'email'=>['required','min:4'],
-        'password'=>['required','min:4'],
+        'loginemail'=>['required','min:4'],
+        'loginpassword'=>['required','min:4'],
     ]);
     if(auth()->attempt(['email'=>$incomingFields['loginemail'],'password'=>$incomingFields['loginpassword']])){
        $request->session()->regenerate();
