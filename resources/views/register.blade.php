@@ -20,7 +20,7 @@
     </div>
     <div class="flex flex-col gap-2 mb-5">
         <label class="text-gray-700 mx-1"  for="password">Password</label>
-        <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="password" name="password " placeholder="Password" id="">
+        <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="password" name="password" placeholder="Password" id="">
     </div>
     <button type="submit" class="text-center bg-blue-500 text-white h-10 hover:bg-blue-400">Register</button>
   </form>

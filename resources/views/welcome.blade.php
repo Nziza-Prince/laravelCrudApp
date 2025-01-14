@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script src="https://cdn.tailwindcss.com"></script>
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -20,6 +20,7 @@
         @endif
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+        @auth
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" alt="Laravel background" />
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
@@ -78,8 +79,8 @@
                                         "
                                     />
                                     <img
-                                        src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                        alt="Laravel documentation screenshot"
+                                    src="https://laravel.com/assets/img/welcome/docs-dark.svg"
+                                    alt="Laravel documentation screenshot"
                                         class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
                                     />
                                     <div
@@ -172,5 +173,38 @@
                 </div>
             </div>
         </div>
+
+        @else
+        <div class="flex">
+            <form action="register" method="POST" class="border border-gray-300 flex flex-col w-96 p-3 m-10">
+                @csrf
+                <div class="flex flex-col gap-2 mb-5">
+                    <label class="text-gray-700 mx-1" for="name">Name</label>
+                    <input class="border h-10 rounded-md indent-2 focus:outline-none" type="text" name="name" placeholder="Name" id="">
+                </div>
+                <div class="flex flex-col gap-2 mb-5">
+                    <label class="text-gray-700 mx-1"  for="email">Email</label>
+                    <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="email" name="email" placeholder="Email" id="">
+                </div>
+                <div class="flex flex-col gap-2 mb-5">
+                    <label class="text-gray-700 mx-1"  for="password">Password</label>
+                    <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="password" name="password" placeholder="Password" id="">
+                </div>
+                <button type="submit" class="text-center bg-blue-500 text-white h-10 hover:bg-blue-400">Register</button>
+              </form>
+              <form action="/login" method="POST" class="border border-gray-300 flex flex-col w-96 p-3 m-10">
+                @csrf
+                <div class="flex flex-col gap-2 mb-5">
+                    <label class="text-gray-700 mx-1"  for="loginemail">Email</label>
+                    <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="email" name="loginemail" placeholder="Email" id="">
+                </div>
+                <div class="flex flex-col gap-2 mb-5">
+                    <label class="text-gray-700 mx-1"  for="password">Password</label>
+                    <input class="border h-10 rounded-md indent-2 focus:outline-none"  type="password" name="loginpassword" placeholder="Password" id="">
+                </div>
+                <button type="submit" class="text-center bg-blue-500 text-white h-10 hover:bg-blue-400">Login</button>
+              </form>
+        </div>
+        @endauth
     </body>
 </html>
