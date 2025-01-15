@@ -9,9 +9,13 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="ml-5">
         @auth
-        Congrats you are logged in
+        @if ($username)
+        <h1>Welcome, {{ $username }}!</h1>
+    @else
+        <h1>Welcome, Guest!</h1>
+    @endif
         <form action="/logout" method="POST">
             @csrf
             <button class="text-white rounded-md hover:bg-red-400 bg-red-500 my-10 mx-3 p-2" type="submit">Log out</button>
@@ -22,6 +26,14 @@
             <textarea class="border h-32 rounded-md indent-2 focus:outline-none" name="body" placeholder="Body here ..."  id="" cols="10" rows="10"></textarea>
             <button type="submit" class="bg-blue-400 text-white text-center p-3">Create Post</button>
         </form>
+        <h1 class="mt-10 font-bold text-3xl">All Posts</h1>
+        @foreach ($posts as $post )
+         <div class="mt-10 bg-gray-400 p-5 w-1/2 ">
+              <h1 class="text-2xl font-bold">{{ $post['title'] }}</h1>
+                <p>{{ $post['body'] }}</p>
+            </div>
+
+        @endforeach
         @else
         <div class="flex">
             <form action="register" method="POST" class="border border-gray-300 flex flex-col w-96 p-3 m-10">
