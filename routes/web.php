@@ -5,10 +5,14 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\postController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home',function(){
-    return view("home");
+    $posts = [];
+    $username = null;
+    if(auth()->check()){
+        $user = auth()->user();
+        $username = $user->name;
+        $posts = auth()->user()->userPosts()->latest()->get();
+    }
+    return view('welcome',['posts'=>$posts,'username'=>$username]);
 });
 Route::get('/register',function(){
     return view("register");
