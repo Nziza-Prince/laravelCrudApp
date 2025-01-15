@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdn.tailwindcss.com"></script>
         <title>Laravel</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
@@ -31,6 +31,12 @@
          <div class="mt-10 bg-gray-400 p-5 w-1/2 ">
               <h1 class="text-2xl font-bold">{{ $post['title'] }}</h1>
                 <p>{{ $post['body'] }}</p>
+                <p><a href="/edit-post/{{ $post->id }}">Edit</a></p>
+                <form action="/delete-post/{{ $post->id }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="bg-red-500 text-white p-3">Delete</button>
+                </form>
             </div>
 
         @endforeach
